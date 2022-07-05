@@ -3,7 +3,7 @@ import { DateTimeFilter } from "../../util/DateTimeFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { DroppedUserListRelationFilter } from "../droppedUser/DroppedUserListRelationFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { FloatNullableFilter } from "../../util/FloatNullableFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 
 export type ContactFileWhereInput = {
   bucket?: StringNullableFilter;
@@ -14,6 +14,6 @@ export type ContactFileWhereInput = {
   filePath?: StringNullableFilter;
   id?: StringFilter;
   saleRepresentative?: StringNullableFilter;
-  salesCount?: FloatNullableFilter;
+  salesCount?: IntNullableFilter;
   updatedBy?: DateTimeNullableFilter;
 };

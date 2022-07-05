@@ -57,7 +57,7 @@ model ContactFile {
   filePath           String?
   id                 String        @id @default(cuid())
   saleRepresentative String?
-  salesCount         Float?
+  salesCount         Int?
   updatedAt          DateTime      @updatedAt
   updatedBy          DateTime?
 }
