@@ -1,0 +1,19 @@
+{
+  "dataServiceGeneratorVersion": "0.13.1",
+  "appInfo": {
+    "name": "Dropped Users",
+    "description": "",
+    "version": "b9yc8vth",
+    "id": "cl4kxt9lr121369801m575eaiybx",
+    "url": "https://server.amplication.com/cl4kxt9lr121369801m575eaiybx",
+    "settings": {
+      "dbHost": "localhost",
+      "dbName": "dropped_users",
+      "dbPassword": "postgres",
+      "dbPort": 5432,
+      "dbUser": "postgres",
+      "appId": "cl4kxt9lr121369801m575eaiybx",
+      "authProvider": "Jwt"
+    }
+  }
+}
