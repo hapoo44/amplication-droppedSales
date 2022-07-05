@@ -18,7 +18,7 @@ const CREATE_INPUT = {
   filePath: "exampleFilePath",
   id: "exampleId",
   saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  salesCount: 42,
   updatedAt: new Date(),
   updatedBy: new Date(),
 };
@@ -30,7 +30,7 @@ const CREATE_RESULT = {
   filePath: "exampleFilePath",
   id: "exampleId",
   saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  salesCount: 42,
   updatedAt: new Date(),
   updatedBy: new Date(),
 };
@@ -43,7 +43,7 @@ const FIND_MANY_RESULT = [
     filePath: "exampleFilePath",
     id: "exampleId",
     saleRepresentative: "exampleSaleRepresentative",
-    salesCount: 42.42,
+    salesCount: 42,
     updatedAt: new Date(),
     updatedBy: new Date(),
   },
@@ -56,7 +56,7 @@ const FIND_ONE_RESULT = {
   filePath: "exampleFilePath",
   id: "exampleId",
   saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  salesCount: 42,
   updatedAt: new Date(),
   updatedBy: new Date(),
 };
