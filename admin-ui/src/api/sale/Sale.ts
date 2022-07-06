@@ -3,7 +3,7 @@ export type Sale = {
   createdBy: string | null;
   dropId: string | null;
   id: string;
-  isChecked: boolean | null;
+  isCounted: boolean | null;
   saleDate: Date | null;
   updatedAt: Date;
   updatedBy: Date | null;

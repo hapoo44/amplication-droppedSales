@@ -46,7 +46,7 @@ class SaleCreateInput {
   @Field(() => Boolean, {
     nullable: true,
   })
-  isChecked?: boolean | null;
+  isCounted?: boolean | null;
 
   @ApiProperty({
     required: false,

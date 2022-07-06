@@ -16,7 +16,7 @@ import {
   IsOptional,
   IsDate,
   ValidateNested,
-  IsNumber,
+  IsInt,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { DroppedUser } from "../../droppedUser/base/DroppedUser";
@@ -106,7 +106,7 @@ class ContactFile {
     required: false,
     type: Number,
   })
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,

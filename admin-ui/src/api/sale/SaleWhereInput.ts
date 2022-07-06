@@ -9,7 +9,7 @@ export type SaleWhereInput = {
   createdBy?: StringNullableFilter;
   dropId?: StringNullableFilter;
   id?: StringFilter;
-  isChecked?: BooleanNullableFilter;
+  isCounted?: BooleanNullableFilter;
   saleDate?: DateTimeNullableFilter;
   updatedBy?: DateTimeNullableFilter;
 };

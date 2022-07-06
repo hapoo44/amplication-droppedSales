@@ -42,7 +42,7 @@ model Sale {
   createdBy String?
   dropId    String?   @unique
   id        String    @id @default(cuid())
-  isChecked Boolean?
+  isCounted Boolean?
   saleDate  DateTime?
   updatedAt DateTime  @updatedAt
   updatedBy DateTime?
@@ -57,7 +57,7 @@ model ContactFile {
   filePath           String?
   id                 String        @id @default(cuid())
   saleRepresentative String?
-  salesCount         Float?
+  salesCount         Int?
   updatedAt          DateTime      @updatedAt
   updatedBy          DateTime?
 }
