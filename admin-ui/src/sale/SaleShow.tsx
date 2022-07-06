@@ -16,7 +16,7 @@ export const SaleShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Created By" source="createdBy" />
         <TextField label="Drop ID" source="dropId" />
         <TextField label="ID" source="id" />
-        <BooleanField label="isChecked" source="isChecked" />
+        <BooleanField label="isCounted" source="isCounted" />
         <TextField label="Sale Date" source="saleDate" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="Updated By" source="updatedBy" />

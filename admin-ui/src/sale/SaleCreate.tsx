@@ -14,7 +14,7 @@ export const SaleCreate = (props: CreateProps): React.ReactElement => {
       <SimpleForm>
         <TextInput label="Created By" source="createdBy" />
         <TextInput label="Drop ID" source="dropId" />
-        <BooleanInput label="isChecked" source="isChecked" />
+        <BooleanInput label="isCounted" source="isCounted" />
         <DateTimeInput label="Sale Date" source="saleDate" />
         <DateTimeInput label="Updated By" source="updatedBy" />
       </SimpleForm>

@@ -62,7 +62,7 @@ class Sale {
   @Field(() => Boolean, {
     nullable: true,
   })
-  isChecked!: boolean | null;
+  isCounted!: boolean | null;
 
   @ApiProperty({
     required: false,

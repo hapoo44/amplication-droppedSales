@@ -73,7 +73,7 @@ class SaleWhereInput {
   @Field(() => BooleanNullableFilter, {
     nullable: true,
   })
-  isChecked?: BooleanNullableFilter;
+  isCounted?: BooleanNullableFilter;
 
   @ApiProperty({
     required: false,

@@ -31,7 +31,7 @@ export const ContactFileCreate = (props: CreateProps): React.ReactElement => {
         </ReferenceArrayInput>
         <TextInput label="File Path" source="filePath" />
         <TextInput label="Sale Representative" source="saleRepresentative" />
-        <NumberInput label="salesCount" source="salesCount" />
+        <NumberInput step={1} label="salesCount" source="salesCount" />
         <DateTimeInput label="Updated By" source="updatedBy" />
       </SimpleForm>
     </Create>
