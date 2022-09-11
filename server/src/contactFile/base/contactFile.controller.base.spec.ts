@@ -18,9 +18,9 @@ const CREATE_INPUT = {
   filePath: "exampleFilePath",
   id: "exampleId",
   saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  salesCount: 42,
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
 };
 const CREATE_RESULT = {
   bucket: "exampleBucket",
@@ -30,9 +30,9 @@ const CREATE_RESULT = {
   filePath: "exampleFilePath",
   id: "exampleId",
   saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  salesCount: 42,
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
 };
 const FIND_MANY_RESULT = [
   {
@@ -43,9 +43,9 @@ const FIND_MANY_RESULT = [
     filePath: "exampleFilePath",
     id: "exampleId",
     saleRepresentative: "exampleSaleRepresentative",
-    salesCount: 42.42,
+    salesCount: 42,
     updatedAt: new Date(),
-    updatedBy: new Date(),
+    updatedBy: "exampleUpdatedBy",
   },
 ];
 const FIND_ONE_RESULT = {
@@ -56,9 +56,9 @@ const FIND_ONE_RESULT = {
   filePath: "exampleFilePath",
   id: "exampleId",
   saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  salesCount: 42,
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
 };
 
 const service = {
@@ -127,7 +127,6 @@ describe("ContactFile", () => {
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         createdDate: CREATE_RESULT.createdDate.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
-        updatedBy: CREATE_RESULT.updatedBy.toISOString(),
       });
   });
 
@@ -141,7 +140,6 @@ describe("ContactFile", () => {
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
           createdDate: FIND_MANY_RESULT[0].createdDate.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
-          updatedBy: FIND_MANY_RESULT[0].updatedBy.toISOString(),
         },
       ]);
   });
@@ -166,7 +164,6 @@ describe("ContactFile", () => {
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
         createdDate: FIND_ONE_RESULT.createdDate.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
-        updatedBy: FIND_ONE_RESULT.updatedBy.toISOString(),
       });
   });
 

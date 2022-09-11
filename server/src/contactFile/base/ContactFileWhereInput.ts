@@ -18,7 +18,7 @@ import { DateTimeFilter } from "../../util/DateTimeFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { DroppedUserListRelationFilter } from "../../droppedUser/base/DroppedUserListRelationFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { FloatNullableFilter } from "../../util/FloatNullableFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 @InputType()
 class ContactFileWhereInput {
   @ApiProperty({
@@ -112,24 +112,24 @@ class ContactFileWhereInput {
 
   @ApiProperty({
     required: false,
-    type: FloatNullableFilter,
+    type: IntNullableFilter,
   })
-  @Type(() => FloatNullableFilter)
+  @Type(() => IntNullableFilter)
   @IsOptional()
-  @Field(() => FloatNullableFilter, {
+  @Field(() => IntNullableFilter, {
     nullable: true,
   })
-  salesCount?: FloatNullableFilter;
+  salesCount?: IntNullableFilter;
 
   @ApiProperty({
     required: false,
-    type: DateTimeNullableFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => DateTimeNullableFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => DateTimeNullableFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  updatedBy?: DateTimeNullableFilter;
+  updatedBy?: StringNullableFilter;
 }
 export { ContactFileWhereInput };
