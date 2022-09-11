@@ -11,5 +11,5 @@ export type ContactFile = {
   saleRepresentative: string | null;
   salesCount: number | null;
   updatedAt: Date;
-  updatedBy: Date | null;
+  updatedBy: string | null;
 };

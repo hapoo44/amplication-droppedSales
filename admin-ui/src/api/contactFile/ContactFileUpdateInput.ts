@@ -8,5 +8,5 @@ export type ContactFileUpdateInput = {
   filePath?: string | null;
   saleRepresentative?: string | null;
   salesCount?: number | null;
-  updatedBy?: Date | null;
+  updatedBy?: string | null;
 };

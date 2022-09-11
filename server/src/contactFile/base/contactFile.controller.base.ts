@@ -215,9 +215,12 @@ export class ContactFileControllerBase {
         lastName: true,
         mobile: true,
         sequence: true,
+        sex: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weightDifference: true,
       },
     });
     if (results === null) {

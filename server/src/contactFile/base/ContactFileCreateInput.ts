@@ -16,7 +16,7 @@ import {
   IsOptional,
   IsDate,
   ValidateNested,
-  IsNumber,
+  IsInt,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { DroppedUserCreateNestedManyWithoutContactFilesInput } from "./DroppedUserCreateNestedManyWithoutContactFilesInput";
@@ -93,7 +93,7 @@ class ContactFileCreateInput {
     required: false,
     type: Number,
   })
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -102,13 +102,13 @@ class ContactFileCreateInput {
 
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsString()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => String, {
     nullable: true,
   })
-  updatedBy?: Date | null;
+  updatedBy?: string | null;
 }
 export { ContactFileCreateInput };
