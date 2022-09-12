@@ -1,19 +1,25 @@
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
-import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { DroppedUserListRelationFilter } from "../droppedUser/DroppedUserListRelationFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 
 export type ContactFileWhereInput = {
   bucket?: StringNullableFilter;
   createdAt?: DateTimeFilter;
   createdBy?: StringNullableFilter;
-  createdDate?: DateTimeNullableFilter;
   droppedUsers?: DroppedUserListRelationFilter;
   filePath?: StringNullableFilter;
+  fromDate?: DateTimeNullableFilter;
   id?: StringFilter;
-  saleRepresentative?: StringNullableFilter;
-  salesCount?: FloatNullableFilter;
-  updatedBy?: DateTimeNullableFilter;
+  saleRepresentativeFirstName?: StringNullableFilter;
+  saleRepresentativeLastName?: StringNullableFilter;
+  salesCount?: IntNullableFilter;
+  sex?: "F" | "M";
+  toDate?: DateTimeNullableFilter;
+  updatedBy?: StringNullableFilter;
+  utmCampaign?: StringNullableFilter;
+  weightDifference?: FloatNullableFilter;
 };

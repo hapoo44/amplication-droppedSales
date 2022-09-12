@@ -4,11 +4,16 @@ export type ContactFileOrderByInput = {
   bucket?: SortOrder;
   createdAt?: SortOrder;
   createdBy?: SortOrder;
-  createdDate?: SortOrder;
   filePath?: SortOrder;
+  fromDate?: SortOrder;
   id?: SortOrder;
-  saleRepresentative?: SortOrder;
+  saleRepresentativeFirstName?: SortOrder;
+  saleRepresentativeLastName?: SortOrder;
   salesCount?: SortOrder;
+  sex?: SortOrder;
+  toDate?: SortOrder;
   updatedAt?: SortOrder;
   updatedBy?: SortOrder;
+  utmCampaign?: SortOrder;
+  weightDifference?: SortOrder;
 };
