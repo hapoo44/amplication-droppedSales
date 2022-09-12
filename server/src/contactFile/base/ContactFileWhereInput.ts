@@ -13,11 +13,13 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
+import { IsOptional, ValidateNested, IsEnum } from "class-validator";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
-import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { DroppedUserListRelationFilter } from "../../droppedUser/base/DroppedUserListRelationFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { EnumContactFileSex } from "./EnumContactFileSex";
 import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 @InputType()
 class ContactFileWhereInput {
@@ -56,17 +58,6 @@ class ContactFileWhereInput {
 
   @ApiProperty({
     required: false,
-    type: DateTimeNullableFilter,
-  })
-  @Type(() => DateTimeNullableFilter)
-  @IsOptional()
-  @Field(() => DateTimeNullableFilter, {
-    nullable: true,
-  })
-  createdDate?: DateTimeNullableFilter;
-
-  @ApiProperty({
-    required: false,
     type: () => DroppedUserListRelationFilter,
   })
   @ValidateNested()
@@ -90,6 +81,17 @@ class ContactFileWhereInput {
 
   @ApiProperty({
     required: false,
+    type: DateTimeNullableFilter,
+  })
+  @Type(() => DateTimeNullableFilter)
+  @IsOptional()
+  @Field(() => DateTimeNullableFilter, {
+    nullable: true,
+  })
+  fromDate?: DateTimeNullableFilter;
+
+  @ApiProperty({
+    required: false,
     type: StringFilter,
   })
   @Type(() => StringFilter)
@@ -108,18 +110,40 @@ class ContactFileWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  saleRepresentative?: StringNullableFilter;
+  saleRepresentativeFirstName?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
-    type: FloatNullableFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => FloatNullableFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => FloatNullableFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  salesCount?: FloatNullableFilter;
+  saleRepresentativeLastName?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntNullableFilter,
+  })
+  @Type(() => IntNullableFilter)
+  @IsOptional()
+  @Field(() => IntNullableFilter, {
+    nullable: true,
+  })
+  salesCount?: IntNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumContactFileSex,
+  })
+  @IsEnum(EnumContactFileSex)
+  @IsOptional()
+  @Field(() => EnumContactFileSex, {
+    nullable: true,
+  })
+  sex?: "F" | "M";
 
   @ApiProperty({
     required: false,
@@ -130,6 +154,39 @@ class ContactFileWhereInput {
   @Field(() => DateTimeNullableFilter, {
     nullable: true,
   })
-  updatedBy?: DateTimeNullableFilter;
+  toDate?: DateTimeNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  updatedBy?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  utmCampaign?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: FloatNullableFilter,
+  })
+  @Type(() => FloatNullableFilter)
+  @IsOptional()
+  @Field(() => FloatNullableFilter, {
+    nullable: true,
+  })
+  weightDifference?: FloatNullableFilter;
 }
 export { ContactFileWhereInput };

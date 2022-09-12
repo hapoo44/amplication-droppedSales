@@ -17,9 +17,12 @@ import {
   ValidateNested,
   IsDate,
   IsInt,
+  IsEnum,
+  IsNumber,
 } from "class-validator";
 import { ContactFile } from "../../contactFile/base/ContactFile";
 import { Type } from "class-transformer";
+import { EnumDroppedUserSex } from "./EnumDroppedUserSex";
 @ObjectType()
 class DroppedUser {
   @ApiProperty({
@@ -52,14 +55,14 @@ class DroppedUser {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  createdBy!: number | null;
+  createdBy!: string | null;
 
   @ApiProperty({
     required: false,
@@ -147,6 +150,17 @@ class DroppedUser {
   sequence!: number | null;
 
   @ApiProperty({
+    required: false,
+    enum: EnumDroppedUserSex,
+  })
+  @IsEnum(EnumDroppedUserSex)
+  @IsOptional()
+  @Field(() => EnumDroppedUserSex, {
+    nullable: true,
+  })
+  sex?: "F" | "M" | null;
+
+  @ApiProperty({
     required: true,
   })
   @IsDate()
@@ -156,14 +170,25 @@ class DroppedUser {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  updatedBy!: number | null;
+  updatedBy!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  utmCampaign!: string | null;
 
   @ApiProperty({
     required: false,
@@ -175,5 +200,16 @@ class DroppedUser {
     nullable: true,
   })
   vcfString!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  weightDifference!: number | null;
 }
 export { DroppedUser };

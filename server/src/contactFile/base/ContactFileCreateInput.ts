@@ -14,12 +14,15 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
-  IsDate,
   ValidateNested,
+  IsDate,
+  IsInt,
+  IsEnum,
   IsNumber,
 } from "class-validator";
-import { Type } from "class-transformer";
 import { DroppedUserCreateNestedManyWithoutContactFilesInput } from "./DroppedUserCreateNestedManyWithoutContactFilesInput";
+import { Type } from "class-transformer";
+import { EnumContactFileSex } from "./EnumContactFileSex";
 @InputType()
 class ContactFileCreateInput {
   @ApiProperty({
@@ -46,17 +49,6 @@ class ContactFileCreateInput {
 
   @ApiProperty({
     required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  createdDate?: Date | null;
-
-  @ApiProperty({
-    required: false,
     type: () => DroppedUserCreateNestedManyWithoutContactFilesInput,
   })
   @ValidateNested()
@@ -80,6 +72,17 @@ class ContactFileCreateInput {
 
   @ApiProperty({
     required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  fromDate?: Date | null;
+
+  @ApiProperty({
+    required: false,
     type: String,
   })
   @IsString()
@@ -87,18 +90,40 @@ class ContactFileCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  saleRepresentative?: string | null;
+  saleRepresentativeFirstName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  saleRepresentativeLastName?: string | null;
 
   @ApiProperty({
     required: false,
     type: Number,
   })
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
   })
   salesCount?: number | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumContactFileSex,
+  })
+  @IsEnum(EnumContactFileSex)
+  @IsOptional()
+  @Field(() => EnumContactFileSex, {
+    nullable: true,
+  })
+  sex?: "F" | "M" | null;
 
   @ApiProperty({
     required: false,
@@ -109,6 +134,39 @@ class ContactFileCreateInput {
   @Field(() => Date, {
     nullable: true,
   })
-  updatedBy?: Date | null;
+  toDate?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  updatedBy?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  utmCampaign?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  weightDifference?: number | null;
 }
 export { ContactFileCreateInput };

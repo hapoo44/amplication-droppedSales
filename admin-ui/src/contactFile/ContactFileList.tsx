@@ -12,16 +12,27 @@ export const ContactFileList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Bucket" source="bucket" />
+        <TextField label="bucket" source="bucket" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="Created By" source="createdBy" />
-        <TextField label="createdDate" source="createdDate" />
         <TextField label="File Path" source="filePath" />
+        <TextField label="fromDate" source="fromDate" />
         <TextField label="ID" source="id" />
-        <TextField label="Sale Representative" source="saleRepresentative" />
+        <TextField
+          label="Sale Representative FirstName"
+          source="saleRepresentativeFirstName"
+        />
+        <TextField
+          label="Sale Representative LastName"
+          source="saleRepresentativeLastName"
+        />
         <TextField label="salesCount" source="salesCount" />
+        <TextField label="sex" source="sex" />
+        <TextField label="toDate" source="toDate" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="Updated By" source="updatedBy" />
+        <TextField label="utmCampaign" source="utmCampaign" />
+        <TextField label="weightDifference" source="weightDifference" />
       </Datagrid>
     </List>
   );

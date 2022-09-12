@@ -52,7 +52,7 @@ class ContactFileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  createdDate?: SortOrder;
+  filePath?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class ContactFileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  filePath?: SortOrder;
+  fromDate?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -79,7 +79,16 @@ class ContactFileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  saleRepresentative?: SortOrder;
+  saleRepresentativeFirstName?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  saleRepresentativeLastName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -89,6 +98,24 @@ class ContactFileOrderByInput {
     nullable: true,
   })
   salesCount?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  sex?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  toDate?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -107,6 +134,24 @@ class ContactFileOrderByInput {
     nullable: true,
   })
   updatedBy?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  utmCampaign?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  weightDifference?: SortOrder;
 }
 
 export { ContactFileOrderByInput };
