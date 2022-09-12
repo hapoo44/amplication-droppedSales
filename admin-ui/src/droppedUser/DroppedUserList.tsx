@@ -38,9 +38,12 @@ export const DroppedUserList = (props: ListProps): React.ReactElement => {
         <TextField label="lastName" source="lastName" />
         <TextField label="Mobile" source="mobile" />
         <TextField label="sequence" source="sequence" />
+        <TextField label="sex" source="sex" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="Updated By" source="updatedBy" />
+        <TextField label="utm campaign" source="utmCampaign" />
         <TextField label="VCF String" source="vcfString" />
+        <TextField label="weight difference" source="weightDifference" />
       </Datagrid>
     </List>
   );

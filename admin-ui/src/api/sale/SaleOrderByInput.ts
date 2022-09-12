@@ -5,7 +5,7 @@ export type SaleOrderByInput = {
   createdBy?: SortOrder;
   dropId?: SortOrder;
   id?: SortOrder;
-  isChecked?: SortOrder;
+  isCounted?: SortOrder;
   saleDate?: SortOrder;
   updatedAt?: SortOrder;
   updatedBy?: SortOrder;
