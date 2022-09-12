@@ -3,7 +3,7 @@ import { ContactFileWhereUniqueInput } from "../contactFile/ContactFileWhereUniq
 export type DroppedUserUpdateInput = {
   bucket?: string | null;
   contactFile?: ContactFileWhereUniqueInput | null;
-  createdBy?: number | null;
+  createdBy?: string | null;
   dropId?: string | null;
   droppedDate?: Date | null;
   filePath?: string | null;
@@ -11,6 +11,9 @@ export type DroppedUserUpdateInput = {
   lastName?: string | null;
   mobile?: string | null;
   sequence?: number | null;
-  updatedBy?: number | null;
+  sex?: "F" | "M" | null;
+  updatedBy?: string | null;
+  utmCampaign?: string | null;
   vcfString?: string | null;
+  weightDifference?: number | null;
 };

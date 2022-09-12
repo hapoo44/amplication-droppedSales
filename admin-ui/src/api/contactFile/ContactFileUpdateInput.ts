@@ -3,10 +3,16 @@ import { DroppedUserUpdateManyWithoutContactFilesInput } from "./DroppedUserUpda
 export type ContactFileUpdateInput = {
   bucket?: string | null;
   createdBy?: string | null;
-  createdDate?: Date | null;
   droppedUsers?: DroppedUserUpdateManyWithoutContactFilesInput;
   filePath?: string | null;
-  saleRepresentative?: string | null;
+  fromDate?: Date | null;
+  saleRepresentativeFirstName?: string | null;
+  saleRepresentativeLastName?: string | null;
   salesCount?: number | null;
-  updatedBy?: Date | null;
+  sex?: string | null;
+  toDate?: Date | null;
+  toWeightDifference?: number | null;
+  updatedBy?: string | null;
+  utmCampaign?: string | null;
+  weightDifferenceFrom?: number | null;
 };
