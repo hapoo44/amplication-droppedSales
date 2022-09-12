@@ -73,7 +73,7 @@ class SaleWhereInput {
   @Field(() => BooleanNullableFilter, {
     nullable: true,
   })
-  isChecked?: BooleanNullableFilter;
+  isCounted?: BooleanNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -88,13 +88,13 @@ class SaleWhereInput {
 
   @ApiProperty({
     required: false,
-    type: DateTimeNullableFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => DateTimeNullableFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => DateTimeNullableFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  updatedBy?: DateTimeNullableFilter;
+  updatedBy?: StringNullableFilter;
 }
 export { SaleWhereInput };

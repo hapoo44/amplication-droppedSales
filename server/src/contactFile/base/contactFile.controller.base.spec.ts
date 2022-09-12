@@ -14,51 +14,71 @@ const CREATE_INPUT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
   createdBy: "exampleCreatedBy",
-  createdDate: new Date(),
   filePath: "exampleFilePath",
+  fromDate: new Date(),
   id: "exampleId",
-  saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  saleRepresentativeFirstName: "exampleSaleRepresentativeFirstName",
+  saleRepresentativeLastName: "exampleSaleRepresentativeLastName",
+  salesCount: 42,
+  sex: "exampleSex",
+  toDate: new Date(),
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
+  weightDifference: 42.42,
 };
 const CREATE_RESULT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
   createdBy: "exampleCreatedBy",
-  createdDate: new Date(),
   filePath: "exampleFilePath",
+  fromDate: new Date(),
   id: "exampleId",
-  saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  saleRepresentativeFirstName: "exampleSaleRepresentativeFirstName",
+  saleRepresentativeLastName: "exampleSaleRepresentativeLastName",
+  salesCount: 42,
+  sex: "exampleSex",
+  toDate: new Date(),
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
+  weightDifference: 42.42,
 };
 const FIND_MANY_RESULT = [
   {
     bucket: "exampleBucket",
     createdAt: new Date(),
     createdBy: "exampleCreatedBy",
-    createdDate: new Date(),
     filePath: "exampleFilePath",
+    fromDate: new Date(),
     id: "exampleId",
-    saleRepresentative: "exampleSaleRepresentative",
-    salesCount: 42.42,
+    saleRepresentativeFirstName: "exampleSaleRepresentativeFirstName",
+    saleRepresentativeLastName: "exampleSaleRepresentativeLastName",
+    salesCount: 42,
+    sex: "exampleSex",
+    toDate: new Date(),
     updatedAt: new Date(),
-    updatedBy: new Date(),
+    updatedBy: "exampleUpdatedBy",
+    utmCampaign: "exampleUtmCampaign",
+    weightDifference: 42.42,
   },
 ];
 const FIND_ONE_RESULT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
   createdBy: "exampleCreatedBy",
-  createdDate: new Date(),
   filePath: "exampleFilePath",
+  fromDate: new Date(),
   id: "exampleId",
-  saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  saleRepresentativeFirstName: "exampleSaleRepresentativeFirstName",
+  saleRepresentativeLastName: "exampleSaleRepresentativeLastName",
+  salesCount: 42,
+  sex: "exampleSex",
+  toDate: new Date(),
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
+  weightDifference: 42.42,
 };
 
 const service = {
@@ -125,9 +145,9 @@ describe("ContactFile", () => {
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
-        createdDate: CREATE_RESULT.createdDate.toISOString(),
+        fromDate: CREATE_RESULT.fromDate.toISOString(),
+        toDate: CREATE_RESULT.toDate.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
-        updatedBy: CREATE_RESULT.updatedBy.toISOString(),
       });
   });
 
@@ -139,9 +159,9 @@ describe("ContactFile", () => {
         {
           ...FIND_MANY_RESULT[0],
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
-          createdDate: FIND_MANY_RESULT[0].createdDate.toISOString(),
+          fromDate: FIND_MANY_RESULT[0].fromDate.toISOString(),
+          toDate: FIND_MANY_RESULT[0].toDate.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
-          updatedBy: FIND_MANY_RESULT[0].updatedBy.toISOString(),
         },
       ]);
   });
@@ -164,9 +184,9 @@ describe("ContactFile", () => {
       .expect({
         ...FIND_ONE_RESULT,
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
-        createdDate: FIND_ONE_RESULT.createdDate.toISOString(),
+        fromDate: FIND_ONE_RESULT.fromDate.toISOString(),
+        toDate: FIND_ONE_RESULT.toDate.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
-        updatedBy: FIND_ONE_RESULT.updatedBy.toISOString(),
       });
   });
 

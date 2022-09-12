@@ -46,7 +46,7 @@ class SaleUpdateInput {
   @Field(() => Boolean, {
     nullable: true,
   })
-  isChecked?: boolean | null;
+  isCounted?: boolean | null;
 
   @ApiProperty({
     required: false,
@@ -61,13 +61,13 @@ class SaleUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsString()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => String, {
     nullable: true,
   })
-  updatedBy?: Date | null;
+  updatedBy?: string | null;
 }
 export { SaleUpdateInput };
