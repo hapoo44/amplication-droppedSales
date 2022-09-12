@@ -70,9 +70,12 @@ export class DroppedUserControllerBase {
         lastName: true,
         mobile: true,
         sequence: true,
+        sex: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weightDifference: true,
       },
     });
   }
@@ -105,9 +108,12 @@ export class DroppedUserControllerBase {
         lastName: true,
         mobile: true,
         sequence: true,
+        sex: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weightDifference: true,
       },
     });
   }
@@ -141,9 +147,12 @@ export class DroppedUserControllerBase {
         lastName: true,
         mobile: true,
         sequence: true,
+        sex: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weightDifference: true,
       },
     });
     if (result === null) {
@@ -194,9 +203,12 @@ export class DroppedUserControllerBase {
           lastName: true,
           mobile: true,
           sequence: true,
+          sex: true,
           updatedAt: true,
           updatedBy: true,
+          utmCampaign: true,
           vcfString: true,
+          weightDifference: true,
         },
       });
     } catch (error) {
@@ -239,9 +251,12 @@ export class DroppedUserControllerBase {
           lastName: true,
           mobile: true,
           sequence: true,
+          sex: true,
           updatedAt: true,
           updatedBy: true,
+          utmCampaign: true,
           vcfString: true,
+          weightDifference: true,
         },
       });
     } catch (error) {

@@ -15,20 +15,20 @@ const CREATE_INPUT = {
   createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   id: "exampleId",
-  isChecked: "true",
+  isCounted: "true",
   saleDate: new Date(),
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
 };
 const CREATE_RESULT = {
   createdAt: new Date(),
   createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   id: "exampleId",
-  isChecked: "true",
+  isCounted: "true",
   saleDate: new Date(),
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
 };
 const FIND_MANY_RESULT = [
   {
@@ -36,10 +36,10 @@ const FIND_MANY_RESULT = [
     createdBy: "exampleCreatedBy",
     dropId: "exampleDropId",
     id: "exampleId",
-    isChecked: "true",
+    isCounted: "true",
     saleDate: new Date(),
     updatedAt: new Date(),
-    updatedBy: new Date(),
+    updatedBy: "exampleUpdatedBy",
   },
 ];
 const FIND_ONE_RESULT = {
@@ -47,10 +47,10 @@ const FIND_ONE_RESULT = {
   createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   id: "exampleId",
-  isChecked: "true",
+  isCounted: "true",
   saleDate: new Date(),
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
 };
 
 const service = {
@@ -119,7 +119,6 @@ describe("Sale", () => {
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         saleDate: CREATE_RESULT.saleDate.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
-        updatedBy: CREATE_RESULT.updatedBy.toISOString(),
       });
   });
 
@@ -133,7 +132,6 @@ describe("Sale", () => {
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
           saleDate: FIND_MANY_RESULT[0].saleDate.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
-          updatedBy: FIND_MANY_RESULT[0].updatedBy.toISOString(),
         },
       ]);
   });
@@ -158,7 +156,6 @@ describe("Sale", () => {
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
         saleDate: FIND_ONE_RESULT.saleDate.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
-        updatedBy: FIND_ONE_RESULT.updatedBy.toISOString(),
       });
   });
 

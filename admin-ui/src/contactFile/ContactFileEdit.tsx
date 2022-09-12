@@ -5,11 +5,11 @@ import {
   SimpleForm,
   EditProps,
   TextInput,
-  DateInput,
   ReferenceArrayInput,
   SelectArrayInput,
-  NumberInput,
   DateTimeInput,
+  NumberInput,
+  SelectInput,
 } from "react-admin";
 
 import { DroppedUserTitle } from "../droppedUser/DroppedUserTitle";
@@ -18,9 +18,7 @@ export const ContactFileEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Bucket" source="bucket" />
         <TextInput label="Created By" source="createdBy" />
-        <DateInput label="createdDate" source="createdDate" />
         <ReferenceArrayInput
           source="droppedUsers"
           reference="DroppedUser"
@@ -30,9 +28,31 @@ export const ContactFileEdit = (props: EditProps): React.ReactElement => {
           <SelectArrayInput optionText={DroppedUserTitle} />
         </ReferenceArrayInput>
         <TextInput label="File Path" source="filePath" />
-        <TextInput label="Sale Representative" source="saleRepresentative" />
-        <NumberInput label="salesCount" source="salesCount" />
-        <DateTimeInput label="Updated By" source="updatedBy" />
+        <DateTimeInput label="fromDate" source="fromDate" />
+        <TextInput
+          label="Sale Representative FirstName"
+          source="saleRepresentativeFirstName"
+        />
+        <TextInput
+          label="Sale Representative LastName"
+          source="saleRepresentativeLastName"
+        />
+        <NumberInput step={1} label="salesCount" source="salesCount" />
+        <SelectInput
+          source="sex"
+          label="sex"
+          choices={[
+            { label: "FEMALE", value: "F" },
+            { label: "MALE", value: "M" },
+          ]}
+          optionText="label"
+          allowEmpty
+          optionValue="value"
+        />
+        <DateTimeInput label="toDate" source="toDate" />
+        <TextInput label="Updated By" source="updatedBy" />
+        <TextInput label="utmCampaign" source="utmCampaign" />
+        <NumberInput label="weightDifference" source="weightDifference" />
       </SimpleForm>
     </Edit>
   );

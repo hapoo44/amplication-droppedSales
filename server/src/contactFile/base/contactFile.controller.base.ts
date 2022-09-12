@@ -47,16 +47,20 @@ export class ContactFileControllerBase {
     return await this.service.create({
       data: data,
       select: {
-        bucket: true,
         createdAt: true,
         createdBy: true,
-        createdDate: true,
         filePath: true,
+        fromDate: true,
         id: true,
-        saleRepresentative: true,
+        saleRepresentativeFirstName: true,
+        saleRepresentativeLastName: true,
         salesCount: true,
+        sex: true,
+        toDate: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
+        weightDifference: true,
       },
     });
   }
@@ -71,16 +75,20 @@ export class ContactFileControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        bucket: true,
         createdAt: true,
         createdBy: true,
-        createdDate: true,
         filePath: true,
+        fromDate: true,
         id: true,
-        saleRepresentative: true,
+        saleRepresentativeFirstName: true,
+        saleRepresentativeLastName: true,
         salesCount: true,
+        sex: true,
+        toDate: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
+        weightDifference: true,
       },
     });
   }
@@ -96,16 +104,20 @@ export class ContactFileControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        bucket: true,
         createdAt: true,
         createdBy: true,
-        createdDate: true,
         filePath: true,
+        fromDate: true,
         id: true,
-        saleRepresentative: true,
+        saleRepresentativeFirstName: true,
+        saleRepresentativeLastName: true,
         salesCount: true,
+        sex: true,
+        toDate: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
+        weightDifference: true,
       },
     });
     if (result === null) {
@@ -130,16 +142,20 @@ export class ContactFileControllerBase {
         where: params,
         data: data,
         select: {
-          bucket: true,
           createdAt: true,
           createdBy: true,
-          createdDate: true,
           filePath: true,
+          fromDate: true,
           id: true,
-          saleRepresentative: true,
+          saleRepresentativeFirstName: true,
+          saleRepresentativeLastName: true,
           salesCount: true,
+          sex: true,
+          toDate: true,
           updatedAt: true,
           updatedBy: true,
+          utmCampaign: true,
+          weightDifference: true,
         },
       });
     } catch (error) {
@@ -164,16 +180,20 @@ export class ContactFileControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          bucket: true,
           createdAt: true,
           createdBy: true,
-          createdDate: true,
           filePath: true,
+          fromDate: true,
           id: true,
-          saleRepresentative: true,
+          saleRepresentativeFirstName: true,
+          saleRepresentativeLastName: true,
           salesCount: true,
+          sex: true,
+          toDate: true,
           updatedAt: true,
           updatedBy: true,
+          utmCampaign: true,
+          weightDifference: true,
         },
       });
     } catch (error) {
@@ -215,9 +235,12 @@ export class ContactFileControllerBase {
         lastName: true,
         mobile: true,
         sequence: true,
+        sex: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weightDifference: true,
       },
     });
     if (results === null) {

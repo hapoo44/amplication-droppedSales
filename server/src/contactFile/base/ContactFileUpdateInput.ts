@@ -14,12 +14,15 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
-  IsDate,
   ValidateNested,
+  IsDate,
+  IsInt,
+  IsEnum,
   IsNumber,
 } from "class-validator";
-import { Type } from "class-transformer";
 import { DroppedUserUpdateManyWithoutContactFilesInput } from "./DroppedUserUpdateManyWithoutContactFilesInput";
+import { Type } from "class-transformer";
+import { EnumContactFileSex } from "./EnumContactFileSex";
 @InputType()
 class ContactFileUpdateInput {
   @ApiProperty({
@@ -31,29 +34,7 @@ class ContactFileUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  bucket?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   createdBy?: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  createdDate?: Date | null;
 
   @ApiProperty({
     required: false,
@@ -80,6 +61,17 @@ class ContactFileUpdateInput {
 
   @ApiProperty({
     required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  fromDate?: Date | null;
+
+  @ApiProperty({
+    required: false,
     type: String,
   })
   @IsString()
@@ -87,18 +79,40 @@ class ContactFileUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  saleRepresentative?: string | null;
+  saleRepresentativeFirstName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  saleRepresentativeLastName?: string | null;
 
   @ApiProperty({
     required: false,
     type: Number,
   })
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
   })
   salesCount?: number | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumContactFileSex,
+  })
+  @IsEnum(EnumContactFileSex)
+  @IsOptional()
+  @Field(() => EnumContactFileSex, {
+    nullable: true,
+  })
+  sex?: "F" | "M" | null;
 
   @ApiProperty({
     required: false,
@@ -109,6 +123,39 @@ class ContactFileUpdateInput {
   @Field(() => Date, {
     nullable: true,
   })
-  updatedBy?: Date | null;
+  toDate?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  updatedBy?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  utmCampaign?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  weightDifference?: number | null;
 }
 export { ContactFileUpdateInput };

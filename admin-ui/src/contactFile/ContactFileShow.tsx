@@ -4,8 +4,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  TextField,
   DateField,
+  TextField,
   ReferenceManyField,
   Datagrid,
   ReferenceField,
@@ -17,16 +17,26 @@ export const ContactFileShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Bucket" source="bucket" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="Created By" source="createdBy" />
-        <TextField label="createdDate" source="createdDate" />
         <TextField label="File Path" source="filePath" />
+        <TextField label="fromDate" source="fromDate" />
         <TextField label="ID" source="id" />
-        <TextField label="Sale Representative" source="saleRepresentative" />
+        <TextField
+          label="Sale Representative FirstName"
+          source="saleRepresentativeFirstName"
+        />
+        <TextField
+          label="Sale Representative LastName"
+          source="saleRepresentativeLastName"
+        />
         <TextField label="salesCount" source="salesCount" />
+        <TextField label="sex" source="sex" />
+        <TextField label="toDate" source="toDate" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="Updated By" source="updatedBy" />
+        <TextField label="utmCampaign" source="utmCampaign" />
+        <TextField label="weightDifference" source="weightDifference" />
         <ReferenceManyField
           reference="DroppedUser"
           target="ContactFileId"
@@ -51,9 +61,12 @@ export const ContactFileShow = (props: ShowProps): React.ReactElement => {
             <TextField label="lastName" source="lastName" />
             <TextField label="Mobile" source="mobile" />
             <TextField label="sequence" source="sequence" />
+            <TextField label="sex" source="sex" />
             <DateField source="updatedAt" label="Updated At" />
             <TextField label="Updated By" source="updatedBy" />
+            <TextField label="utm campaign" source="utmCampaign" />
             <TextField label="VCF String" source="vcfString" />
+            <TextField label="weight difference" source="weightDifference" />
           </Datagrid>
         </ReferenceManyField>
       </SimpleShowLayout>
