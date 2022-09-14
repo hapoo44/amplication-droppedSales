@@ -4,7 +4,7 @@ export type DroppedUser = {
   bucket: string | null;
   contactFile?: ContactFile | null;
   createdAt: Date;
-  createdBy: number | null;
+  createdBy: string | null;
   dropId: string | null;
   droppedDate: Date | null;
   filePath: string | null;
@@ -13,7 +13,11 @@ export type DroppedUser = {
   lastName: string | null;
   mobile: string | null;
   sequence: number | null;
+  sex?: "F" | "M" | null;
   updatedAt: Date;
-  updatedBy: number | null;
+  updatedBy: string | null;
+  utmCampaign: string | null;
   vcfString: string | null;
+  weight: number | null;
+  weightDifference: number | null;
 };

@@ -1,15 +1,16 @@
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { ContactFileWhereUniqueInput } from "../contactFile/ContactFileWhereUniqueInput";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
-import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 
 export type DroppedUserWhereInput = {
   bucket?: StringNullableFilter;
   contactFile?: ContactFileWhereUniqueInput;
   createdAt?: DateTimeFilter;
-  createdBy?: IntNullableFilter;
+  createdBy?: StringNullableFilter;
   dropId?: StringNullableFilter;
   droppedDate?: DateTimeNullableFilter;
   filePath?: StringNullableFilter;
@@ -18,6 +19,10 @@ export type DroppedUserWhereInput = {
   lastName?: StringNullableFilter;
   mobile?: StringNullableFilter;
   sequence?: IntNullableFilter;
-  updatedBy?: IntNullableFilter;
+  sex?: "F" | "M";
+  updatedBy?: StringNullableFilter;
+  utmCampaign?: StringNullableFilter;
   vcfString?: StringNullableFilter;
+  weight?: FloatNullableFilter;
+  weightDifference?: IntNullableFilter;
 };
