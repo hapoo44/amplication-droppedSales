@@ -13,12 +13,14 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
+import { IsOptional, ValidateNested, IsEnum } from "class-validator";
 import { ContactFileWhereUniqueInput } from "../../contactFile/base/ContactFileWhereUniqueInput";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
-import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { EnumDroppedUserSex } from "./EnumDroppedUserSex";
+import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 @InputType()
 class DroppedUserWhereInput {
   @ApiProperty({
@@ -57,14 +59,14 @@ class DroppedUserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: IntNullableFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => IntNullableFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => IntNullableFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  createdBy?: IntNullableFilter;
+  createdBy?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -156,14 +158,36 @@ class DroppedUserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: IntNullableFilter,
+    enum: EnumDroppedUserSex,
   })
-  @Type(() => IntNullableFilter)
+  @IsEnum(EnumDroppedUserSex)
   @IsOptional()
-  @Field(() => IntNullableFilter, {
+  @Field(() => EnumDroppedUserSex, {
     nullable: true,
   })
-  updatedBy?: IntNullableFilter;
+  sex?: "F" | "M";
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  updatedBy?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  utmCampaign?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -175,5 +199,27 @@ class DroppedUserWhereInput {
     nullable: true,
   })
   vcfString?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: FloatNullableFilter,
+  })
+  @Type(() => FloatNullableFilter)
+  @IsOptional()
+  @Field(() => FloatNullableFilter, {
+    nullable: true,
+  })
+  weight?: FloatNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntNullableFilter,
+  })
+  @Type(() => IntNullableFilter)
+  @IsOptional()
+  @Field(() => IntNullableFilter, {
+    nullable: true,
+  })
+  weightDifference?: IntNullableFilter;
 }
 export { DroppedUserWhereInput };

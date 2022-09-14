@@ -133,6 +133,15 @@ class DroppedUserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  sex?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   updatedAt?: SortOrder;
 
   @ApiProperty({
@@ -151,7 +160,34 @@ class DroppedUserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  utmCampaign?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   vcfString?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  weight?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  weightDifference?: SortOrder;
 }
 
 export { DroppedUserOrderByInput };

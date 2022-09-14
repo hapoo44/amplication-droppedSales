@@ -13,7 +13,7 @@ const existingId = "existingId";
 const CREATE_INPUT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
-  createdBy: 42,
+  createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   droppedDate: new Date(),
   filePath: "exampleFilePath",
@@ -23,13 +23,16 @@ const CREATE_INPUT = {
   mobile: "exampleMobile",
   sequence: 42,
   updatedAt: new Date(),
-  updatedBy: 42,
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
   vcfString: "exampleVcfString",
+  weight: 42.42,
+  weightDifference: 42,
 };
 const CREATE_RESULT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
-  createdBy: 42,
+  createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   droppedDate: new Date(),
   filePath: "exampleFilePath",
@@ -39,14 +42,17 @@ const CREATE_RESULT = {
   mobile: "exampleMobile",
   sequence: 42,
   updatedAt: new Date(),
-  updatedBy: 42,
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
   vcfString: "exampleVcfString",
+  weight: 42.42,
+  weightDifference: 42,
 };
 const FIND_MANY_RESULT = [
   {
     bucket: "exampleBucket",
     createdAt: new Date(),
-    createdBy: 42,
+    createdBy: "exampleCreatedBy",
     dropId: "exampleDropId",
     droppedDate: new Date(),
     filePath: "exampleFilePath",
@@ -56,14 +62,17 @@ const FIND_MANY_RESULT = [
     mobile: "exampleMobile",
     sequence: 42,
     updatedAt: new Date(),
-    updatedBy: 42,
+    updatedBy: "exampleUpdatedBy",
+    utmCampaign: "exampleUtmCampaign",
     vcfString: "exampleVcfString",
+    weight: 42.42,
+    weightDifference: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
-  createdBy: 42,
+  createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   droppedDate: new Date(),
   filePath: "exampleFilePath",
@@ -73,8 +82,11 @@ const FIND_ONE_RESULT = {
   mobile: "exampleMobile",
   sequence: 42,
   updatedAt: new Date(),
-  updatedBy: 42,
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
   vcfString: "exampleVcfString",
+  weight: 42.42,
+  weightDifference: 42,
 };
 
 const service = {
