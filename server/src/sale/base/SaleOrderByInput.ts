@@ -61,7 +61,7 @@ class SaleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  isChecked?: SortOrder;
+  isCounted?: SortOrder;
 
   @ApiProperty({
     required: false,

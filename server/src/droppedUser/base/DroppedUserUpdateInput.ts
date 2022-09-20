@@ -15,11 +15,13 @@ import {
   IsString,
   IsOptional,
   ValidateNested,
-  IsInt,
   IsDate,
+  IsInt,
+  IsEnum,
 } from "class-validator";
 import { ContactFileWhereUniqueInput } from "../../contactFile/base/ContactFileWhereUniqueInput";
 import { Type } from "class-transformer";
+import { EnumDroppedUserSex } from "./EnumDroppedUserSex";
 @InputType()
 class DroppedUserUpdateInput {
   @ApiProperty({
@@ -47,14 +49,14 @@ class DroppedUserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  createdBy?: number | null;
+  createdBy?: string | null;
 
   @ApiProperty({
     required: false,
@@ -135,14 +137,36 @@ class DroppedUserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    enum: EnumDroppedUserSex,
   })
-  @IsInt()
+  @IsEnum(EnumDroppedUserSex)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => EnumDroppedUserSex, {
     nullable: true,
   })
-  updatedBy?: number | null;
+  sex?: "F" | "M" | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  updatedBy?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  utmCampaign?: string | null;
 
   @ApiProperty({
     required: false,
@@ -154,5 +178,27 @@ class DroppedUserUpdateInput {
     nullable: true,
   })
   vcfString?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  weight?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  weightDifference?: number | null;
 }
 export { DroppedUserUpdateInput };
