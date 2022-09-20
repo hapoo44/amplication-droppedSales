@@ -7,8 +7,8 @@ import {
   TextInput,
   ReferenceInput,
   SelectInput,
-  NumberInput,
   DateTimeInput,
+  NumberInput,
 } from "react-admin";
 
 import { ContactFileTitle } from "../contactFile/ContactFileTitle";
@@ -25,7 +25,7 @@ export const DroppedUserEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectInput optionText={ContactFileTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Created By" source="createdBy" />
+        <TextInput label="Created By" source="createdBy" />
         <TextInput label="Drop ID" source="dropId" />
         <DateTimeInput label="Dropped Date" source="droppedDate" />
         <TextInput label="File Path" source="filePath" />
@@ -33,8 +33,26 @@ export const DroppedUserEdit = (props: EditProps): React.ReactElement => {
         <TextInput label="lastName" source="lastName" />
         <TextInput label="Mobile" source="mobile" />
         <NumberInput step={1} label="sequence" source="sequence" />
-        <NumberInput step={1} label="Updated By" source="updatedBy" />
+        <SelectInput
+          source="sex"
+          label="sex"
+          choices={[
+            { label: "FEMALE", value: "F" },
+            { label: "MALE", value: "M" },
+          ]}
+          optionText="label"
+          allowEmpty
+          optionValue="value"
+        />
+        <TextInput label="Updated By" source="updatedBy" />
+        <TextInput label="utm campaign" source="utmCampaign" />
         <TextInput label="VCF String" multiline source="vcfString" />
+        <TextInput label="weight" source="weight" />
+        <NumberInput
+          step={1}
+          label="weight difference"
+          source="weightDifference"
+        />
       </SimpleForm>
     </Edit>
   );
