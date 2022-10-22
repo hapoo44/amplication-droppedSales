@@ -17,6 +17,7 @@ import {
   IsDate,
   ValidateNested,
   IsNumber,
+  IsInt,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { DroppedUser } from "../../droppedUser/base/DroppedUser";
@@ -54,17 +55,6 @@ class ContactFile {
 
   @ApiProperty({
     required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  createdDate!: Date | null;
-
-  @ApiProperty({
-    required: false,
     type: () => [DroppedUser],
   })
   @ValidateNested()
@@ -84,6 +74,28 @@ class ContactFile {
   filePath!: string | null;
 
   @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  fromDate!: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  fromWeightDifference!: number | null;
+
+  @ApiProperty({
     required: true,
     type: String,
   })
@@ -100,7 +112,51 @@ class ContactFile {
   @Field(() => String, {
     nullable: true,
   })
-  saleRepresentative!: string | null;
+  saleRepresentativeFirstName!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  saleRepresentativeLastName!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  salesCount!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  sex!: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  toDate!: Date | null;
 
   @ApiProperty({
     required: false,
@@ -111,7 +167,7 @@ class ContactFile {
   @Field(() => Number, {
     nullable: true,
   })
-  salesCount!: number | null;
+  toWeightDifference!: number | null;
 
   @ApiProperty({
     required: true,
@@ -123,13 +179,24 @@ class ContactFile {
 
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsString()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => String, {
     nullable: true,
   })
-  updatedBy!: Date | null;
+  updatedBy!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  utmCampaign!: string | null;
 }
 export { ContactFile };

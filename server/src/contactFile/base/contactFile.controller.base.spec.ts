@@ -1,10 +1,18 @@
 import { Test } from "@nestjs/testing";
-import { INestApplication, HttpStatus, ExecutionContext } from "@nestjs/common";
+import {
+  INestApplication,
+  HttpStatus,
+  ExecutionContext,
+  CallHandler,
+} from "@nestjs/common";
 import request from "supertest";
 import { MorganModule } from "nest-morgan";
 import { ACGuard } from "nest-access-control";
 import { DefaultAuthGuard } from "../../auth/defaultAuth.guard";
 import { ACLModule } from "../../auth/acl.module";
+import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { map } from "rxjs";
 import { ContactFileController } from "../contactFile.controller";
 import { ContactFileService } from "../contactFile.service";
 
@@ -14,51 +22,75 @@ const CREATE_INPUT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
   createdBy: "exampleCreatedBy",
-  createdDate: new Date(),
   filePath: "exampleFilePath",
+  fromDate: new Date(),
+  fromWeightDifference: 42.42,
   id: "exampleId",
-  saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  saleRepresentativeFirstName: "exampleSaleRepresentativeFirstName",
+  saleRepresentativeLastName: "exampleSaleRepresentativeLastName",
+  salesCount: 42,
+  sex: "exampleSex",
+  toDate: new Date(),
+  toWeightDifference: 42.42,
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
 };
 const CREATE_RESULT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
   createdBy: "exampleCreatedBy",
-  createdDate: new Date(),
   filePath: "exampleFilePath",
+  fromDate: new Date(),
+  fromWeightDifference: 42.42,
   id: "exampleId",
-  saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  saleRepresentativeFirstName: "exampleSaleRepresentativeFirstName",
+  saleRepresentativeLastName: "exampleSaleRepresentativeLastName",
+  salesCount: 42,
+  sex: "exampleSex",
+  toDate: new Date(),
+  toWeightDifference: 42.42,
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
 };
 const FIND_MANY_RESULT = [
   {
     bucket: "exampleBucket",
     createdAt: new Date(),
     createdBy: "exampleCreatedBy",
-    createdDate: new Date(),
     filePath: "exampleFilePath",
+    fromDate: new Date(),
+    fromWeightDifference: 42.42,
     id: "exampleId",
-    saleRepresentative: "exampleSaleRepresentative",
-    salesCount: 42.42,
+    saleRepresentativeFirstName: "exampleSaleRepresentativeFirstName",
+    saleRepresentativeLastName: "exampleSaleRepresentativeLastName",
+    salesCount: 42,
+    sex: "exampleSex",
+    toDate: new Date(),
+    toWeightDifference: 42.42,
     updatedAt: new Date(),
-    updatedBy: new Date(),
+    updatedBy: "exampleUpdatedBy",
+    utmCampaign: "exampleUtmCampaign",
   },
 ];
 const FIND_ONE_RESULT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
   createdBy: "exampleCreatedBy",
-  createdDate: new Date(),
   filePath: "exampleFilePath",
+  fromDate: new Date(),
+  fromWeightDifference: 42.42,
   id: "exampleId",
-  saleRepresentative: "exampleSaleRepresentative",
-  salesCount: 42.42,
+  saleRepresentativeFirstName: "exampleSaleRepresentativeFirstName",
+  saleRepresentativeLastName: "exampleSaleRepresentativeLastName",
+  salesCount: 42,
+  sex: "exampleSex",
+  toDate: new Date(),
+  toWeightDifference: 42.42,
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
 };
 
 const service = {
@@ -93,6 +125,21 @@ const acGuard = {
   },
 };
 
+const aclFilterResponseInterceptor = {
+  intercept: (context: ExecutionContext, next: CallHandler) => {
+    return next.handle().pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  },
+};
+const aclValidateRequestInterceptor = {
+  intercept: (context: ExecutionContext, next: CallHandler) => {
+    return next.handle();
+  },
+};
+
 describe("ContactFile", () => {
   let app: INestApplication;
 
@@ -111,6 +158,10 @@ describe("ContactFile", () => {
       .useValue(basicAuthGuard)
       .overrideGuard(ACGuard)
       .useValue(acGuard)
+      .overrideInterceptor(AclFilterResponseInterceptor)
+      .useValue(aclFilterResponseInterceptor)
+      .overrideInterceptor(AclValidateRequestInterceptor)
+      .useValue(aclValidateRequestInterceptor)
       .compile();
 
     app = moduleRef.createNestApplication();
@@ -125,9 +176,9 @@ describe("ContactFile", () => {
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
-        createdDate: CREATE_RESULT.createdDate.toISOString(),
+        fromDate: CREATE_RESULT.fromDate.toISOString(),
+        toDate: CREATE_RESULT.toDate.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
-        updatedBy: CREATE_RESULT.updatedBy.toISOString(),
       });
   });
 
@@ -139,9 +190,9 @@ describe("ContactFile", () => {
         {
           ...FIND_MANY_RESULT[0],
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
-          createdDate: FIND_MANY_RESULT[0].createdDate.toISOString(),
+          fromDate: FIND_MANY_RESULT[0].fromDate.toISOString(),
+          toDate: FIND_MANY_RESULT[0].toDate.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
-          updatedBy: FIND_MANY_RESULT[0].updatedBy.toISOString(),
         },
       ]);
   });
@@ -164,9 +215,9 @@ describe("ContactFile", () => {
       .expect({
         ...FIND_ONE_RESULT,
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
-        createdDate: FIND_ONE_RESULT.createdDate.toISOString(),
+        fromDate: FIND_ONE_RESULT.fromDate.toISOString(),
+        toDate: FIND_ONE_RESULT.toDate.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
-        updatedBy: FIND_ONE_RESULT.updatedBy.toISOString(),
       });
   });
 

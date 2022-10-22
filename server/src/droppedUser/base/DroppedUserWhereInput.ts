@@ -11,16 +11,31 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { JsonFilter } from "../../util/JsonFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
+import { IsOptional, ValidateNested, IsEnum } from "class-validator";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { ContactFileWhereUniqueInput } from "../../contactFile/base/ContactFileWhereUniqueInput";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
-import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { EnumDroppedUserSex } from "./EnumDroppedUserSex";
+import { EnumDroppedUserStatus } from "./EnumDroppedUserStatus";
 @InputType()
 class DroppedUserWhereInput {
+  @ApiProperty({
+    required: false,
+    type: JsonFilter,
+  })
+  @Type(() => JsonFilter)
+  @IsOptional()
+  @Field(() => JsonFilter, {
+    nullable: true,
+  })
+  answers?: JsonFilter;
+
   @ApiProperty({
     required: false,
     type: StringNullableFilter,
@@ -57,14 +72,14 @@ class DroppedUserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: IntNullableFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => IntNullableFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => IntNullableFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  createdBy?: IntNullableFilter;
+  createdBy?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -145,6 +160,17 @@ class DroppedUserWhereInput {
 
   @ApiProperty({
     required: false,
+    type: BooleanNullableFilter,
+  })
+  @Type(() => BooleanNullableFilter)
+  @IsOptional()
+  @Field(() => BooleanNullableFilter, {
+    nullable: true,
+  })
+  needGuidance?: BooleanNullableFilter;
+
+  @ApiProperty({
+    required: false,
     type: IntNullableFilter,
   })
   @Type(() => IntNullableFilter)
@@ -156,14 +182,47 @@ class DroppedUserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: IntNullableFilter,
+    enum: EnumDroppedUserSex,
   })
-  @Type(() => IntNullableFilter)
+  @IsEnum(EnumDroppedUserSex)
   @IsOptional()
-  @Field(() => IntNullableFilter, {
+  @Field(() => EnumDroppedUserSex, {
     nullable: true,
   })
-  updatedBy?: IntNullableFilter;
+  sex?: "F" | "M";
+
+  @ApiProperty({
+    required: false,
+    enum: EnumDroppedUserStatus,
+  })
+  @IsEnum(EnumDroppedUserStatus)
+  @IsOptional()
+  @Field(() => EnumDroppedUserStatus, {
+    nullable: true,
+  })
+  status?: "INIT" | "SENT_NEED_GUIDANCE_SMS";
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  updatedBy?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  utmCampaign?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -175,5 +234,27 @@ class DroppedUserWhereInput {
     nullable: true,
   })
   vcfString?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  weight?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntNullableFilter,
+  })
+  @Type(() => IntNullableFilter)
+  @IsOptional()
+  @Field(() => IntNullableFilter, {
+    nullable: true,
+  })
+  weightDifference?: IntNullableFilter;
 }
 export { DroppedUserWhereInput };

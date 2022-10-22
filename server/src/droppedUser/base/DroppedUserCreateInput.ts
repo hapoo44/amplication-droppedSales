@@ -11,17 +11,36 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+
 import {
-  IsString,
+  IsJSON,
   IsOptional,
+  IsString,
   ValidateNested,
-  IsInt,
   IsDate,
+  IsBoolean,
+  IsInt,
+  IsEnum,
 } from "class-validator";
+
+import { GraphQLJSON } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 import { ContactFileWhereUniqueInput } from "../../contactFile/base/ContactFileWhereUniqueInput";
 import { Type } from "class-transformer";
+import { EnumDroppedUserSex } from "./EnumDroppedUserSex";
+import { EnumDroppedUserStatus } from "./EnumDroppedUserStatus";
 @InputType()
 class DroppedUserCreateInput {
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSON()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  answers?: InputJsonValue;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -47,14 +66,14 @@ class DroppedUserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  createdBy?: number | null;
+  createdBy?: string | null;
 
   @ApiProperty({
     required: false,
@@ -124,6 +143,17 @@ class DroppedUserCreateInput {
 
   @ApiProperty({
     required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  needGuidance?: boolean | null;
+
+  @ApiProperty({
+    required: false,
     type: Number,
   })
   @IsInt()
@@ -135,14 +165,47 @@ class DroppedUserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    enum: EnumDroppedUserSex,
   })
-  @IsInt()
+  @IsEnum(EnumDroppedUserSex)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => EnumDroppedUserSex, {
     nullable: true,
   })
-  updatedBy?: number | null;
+  sex?: "F" | "M" | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumDroppedUserStatus,
+  })
+  @IsEnum(EnumDroppedUserStatus)
+  @IsOptional()
+  @Field(() => EnumDroppedUserStatus, {
+    nullable: true,
+  })
+  status?: "INIT" | "SENT_NEED_GUIDANCE_SMS" | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  updatedBy?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  utmCampaign?: string | null;
 
   @ApiProperty({
     required: false,
@@ -154,5 +217,27 @@ class DroppedUserCreateInput {
     nullable: true,
   })
   vcfString?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  weight?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  weightDifference?: number | null;
 }
 export { DroppedUserCreateInput };
