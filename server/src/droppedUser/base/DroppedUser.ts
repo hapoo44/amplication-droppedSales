@@ -11,17 +11,36 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+
 import {
-  IsString,
+  IsJSON,
   IsOptional,
+  IsString,
   ValidateNested,
   IsDate,
+  IsBoolean,
   IsInt,
+  IsEnum,
 } from "class-validator";
+
+import { GraphQLJSON } from "graphql-type-json";
+import { JsonValue } from "type-fest";
 import { ContactFile } from "../../contactFile/base/ContactFile";
 import { Type } from "class-transformer";
+import { EnumDroppedUserSex } from "./EnumDroppedUserSex";
+import { EnumDroppedUserStatus } from "./EnumDroppedUserStatus";
 @ObjectType()
 class DroppedUser {
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSON()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  answers!: JsonValue;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -52,14 +71,14 @@ class DroppedUser {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  createdBy!: number | null;
+  createdBy!: string | null;
 
   @ApiProperty({
     required: false,
@@ -137,6 +156,17 @@ class DroppedUser {
 
   @ApiProperty({
     required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  needGuidance!: boolean | null;
+
+  @ApiProperty({
+    required: false,
     type: Number,
   })
   @IsInt()
@@ -145,6 +175,28 @@ class DroppedUser {
     nullable: true,
   })
   sequence!: number | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumDroppedUserSex,
+  })
+  @IsEnum(EnumDroppedUserSex)
+  @IsOptional()
+  @Field(() => EnumDroppedUserSex, {
+    nullable: true,
+  })
+  sex?: "F" | "M" | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumDroppedUserStatus,
+  })
+  @IsEnum(EnumDroppedUserStatus)
+  @IsOptional()
+  @Field(() => EnumDroppedUserStatus, {
+    nullable: true,
+  })
+  status?: "INIT" | "SENT_NEED_GUIDANCE_SMS" | null;
 
   @ApiProperty({
     required: true,
@@ -156,14 +208,25 @@ class DroppedUser {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  updatedBy!: number | null;
+  updatedBy!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  utmCampaign!: string | null;
 
   @ApiProperty({
     required: false,
@@ -175,5 +238,27 @@ class DroppedUser {
     nullable: true,
   })
   vcfString!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  weight!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  weightDifference!: number | null;
 }
 export { DroppedUser };

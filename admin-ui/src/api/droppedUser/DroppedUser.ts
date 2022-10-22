@@ -1,10 +1,12 @@
+import { JsonValue } from "type-fest";
 import { ContactFile } from "../contactFile/ContactFile";
 
 export type DroppedUser = {
+  answers: JsonValue;
   bucket: string | null;
   contactFile?: ContactFile | null;
   createdAt: Date;
-  createdBy: number | null;
+  createdBy: string | null;
   dropId: string | null;
   droppedDate: Date | null;
   filePath: string | null;
@@ -12,8 +14,14 @@ export type DroppedUser = {
   id: string;
   lastName: string | null;
   mobile: string | null;
+  needGuidance: boolean | null;
   sequence: number | null;
+  sex?: "F" | "M" | null;
+  status?: "INIT" | "SENT_NEED_GUIDANCE_SMS" | null;
   updatedAt: Date;
-  updatedBy: number | null;
+  updatedBy: string | null;
+  utmCampaign: string | null;
   vcfString: string | null;
+  weight: string | null;
+  weightDifference: number | null;
 };

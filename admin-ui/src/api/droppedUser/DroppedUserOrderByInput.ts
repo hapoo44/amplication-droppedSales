@@ -1,6 +1,7 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type DroppedUserOrderByInput = {
+  answers?: SortOrder;
   bucket?: SortOrder;
   contactFileId?: SortOrder;
   createdAt?: SortOrder;
@@ -12,8 +13,14 @@ export type DroppedUserOrderByInput = {
   id?: SortOrder;
   lastName?: SortOrder;
   mobile?: SortOrder;
+  needGuidance?: SortOrder;
   sequence?: SortOrder;
+  sex?: SortOrder;
+  status?: SortOrder;
   updatedAt?: SortOrder;
   updatedBy?: SortOrder;
+  utmCampaign?: SortOrder;
   vcfString?: SortOrder;
+  weight?: SortOrder;
+  weightDifference?: SortOrder;
 };

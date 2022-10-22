@@ -52,6 +52,7 @@ export class DroppedUserControllerBase {
           : undefined,
       },
       select: {
+        answers: true,
         bucket: true,
 
         contactFile: {
@@ -69,10 +70,16 @@ export class DroppedUserControllerBase {
         id: true,
         lastName: true,
         mobile: true,
+        needGuidance: true,
         sequence: true,
+        sex: true,
+        status: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weight: true,
+        weightDifference: true,
       },
     });
   }
@@ -87,6 +94,7 @@ export class DroppedUserControllerBase {
     return this.service.findMany({
       ...args,
       select: {
+        answers: true,
         bucket: true,
 
         contactFile: {
@@ -104,10 +112,16 @@ export class DroppedUserControllerBase {
         id: true,
         lastName: true,
         mobile: true,
+        needGuidance: true,
         sequence: true,
+        sex: true,
+        status: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weight: true,
+        weightDifference: true,
       },
     });
   }
@@ -123,6 +137,7 @@ export class DroppedUserControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
+        answers: true,
         bucket: true,
 
         contactFile: {
@@ -140,10 +155,16 @@ export class DroppedUserControllerBase {
         id: true,
         lastName: true,
         mobile: true,
+        needGuidance: true,
         sequence: true,
+        sex: true,
+        status: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weight: true,
+        weightDifference: true,
       },
     });
     if (result === null) {
@@ -176,6 +197,7 @@ export class DroppedUserControllerBase {
             : undefined,
         },
         select: {
+          answers: true,
           bucket: true,
 
           contactFile: {
@@ -193,10 +215,16 @@ export class DroppedUserControllerBase {
           id: true,
           lastName: true,
           mobile: true,
+          needGuidance: true,
           sequence: true,
+          sex: true,
+          status: true,
           updatedAt: true,
           updatedBy: true,
+          utmCampaign: true,
           vcfString: true,
+          weight: true,
+          weightDifference: true,
         },
       });
     } catch (error) {
@@ -221,6 +249,7 @@ export class DroppedUserControllerBase {
       return await this.service.delete({
         where: params,
         select: {
+          answers: true,
           bucket: true,
 
           contactFile: {
@@ -238,10 +267,16 @@ export class DroppedUserControllerBase {
           id: true,
           lastName: true,
           mobile: true,
+          needGuidance: true,
           sequence: true,
+          sex: true,
+          status: true,
           updatedAt: true,
           updatedBy: true,
+          utmCampaign: true,
           vcfString: true,
+          weight: true,
+          weightDifference: true,
         },
       });
     } catch (error) {
