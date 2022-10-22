@@ -16,10 +16,14 @@ import {
   IsOptional,
   ValidateNested,
   IsDate,
+  IsBoolean,
   IsInt,
+  IsEnum,
 } from "class-validator";
 import { ContactFile } from "../../contactFile/base/ContactFile";
 import { Type } from "class-transformer";
+import { EnumDroppedUserSex } from "./EnumDroppedUserSex";
+import { EnumDroppedUserStatus } from "./EnumDroppedUserStatus";
 @ObjectType()
 class DroppedUser {
   @ApiProperty({
@@ -52,14 +56,14 @@ class DroppedUser {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  createdBy!: number | null;
+  createdBy!: string | null;
 
   @ApiProperty({
     required: false,
@@ -137,6 +141,17 @@ class DroppedUser {
 
   @ApiProperty({
     required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  needGuidance!: boolean | null;
+
+  @ApiProperty({
+    required: false,
     type: Number,
   })
   @IsInt()
@@ -145,6 +160,28 @@ class DroppedUser {
     nullable: true,
   })
   sequence!: number | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumDroppedUserSex,
+  })
+  @IsEnum(EnumDroppedUserSex)
+  @IsOptional()
+  @Field(() => EnumDroppedUserSex, {
+    nullable: true,
+  })
+  sex?: "F" | "M" | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumDroppedUserStatus,
+  })
+  @IsEnum(EnumDroppedUserStatus)
+  @IsOptional()
+  @Field(() => EnumDroppedUserStatus, {
+    nullable: true,
+  })
+  status?: "INIT" | "SENT_NEED_GUIDANCE_SMS" | null;
 
   @ApiProperty({
     required: true,
@@ -156,14 +193,25 @@ class DroppedUser {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  updatedBy!: number | null;
+  updatedBy!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  utmCampaign!: string | null;
 
   @ApiProperty({
     required: false,
@@ -175,5 +223,27 @@ class DroppedUser {
     nullable: true,
   })
   vcfString!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  weight!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  weightDifference!: number | null;
 }
 export { DroppedUser };

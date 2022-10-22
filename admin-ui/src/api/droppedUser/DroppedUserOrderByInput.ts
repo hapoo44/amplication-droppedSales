@@ -12,8 +12,14 @@ export type DroppedUserOrderByInput = {
   id?: SortOrder;
   lastName?: SortOrder;
   mobile?: SortOrder;
+  needGuidance?: SortOrder;
   sequence?: SortOrder;
+  sex?: SortOrder;
+  status?: SortOrder;
   updatedAt?: SortOrder;
   updatedBy?: SortOrder;
+  utmCampaign?: SortOrder;
   vcfString?: SortOrder;
+  weight?: SortOrder;
+  weightDifference?: SortOrder;
 };

@@ -1,6 +1,6 @@
 datasource postgres {
   provider = "postgresql"
-  url      = env("POSTGRESQL_URL")
+  url      = env("DB_URL")
 }
 
 generator client {
@@ -13,28 +13,34 @@ model User {
   id        String   @id @default(cuid())
   lastName  String?
   password  String
-  roles     String[]
+  roles     Json
   updatedAt DateTime @updatedAt
   username  String   @unique
 }
 
 model DroppedUser {
-  bucket        String?
-  contactFile   ContactFile? @relation(fields: [contactFileId], references: [id])
-  contactFileId String?
-  createdAt     DateTime     @default(now())
-  createdBy     Int?
-  dropId        String?      @unique
-  droppedDate   DateTime?
-  filePath      String?
-  firstName     String?
-  id            String       @id @default(cuid())
-  lastName      String?
-  mobile        String?
-  sequence      Int?
-  updatedAt     DateTime     @updatedAt
-  updatedBy     Int?
-  vcfString     String?
+  bucket           String?
+  contactFile      ContactFile?           @relation(fields: [contactFileId], references: [id])
+  contactFileId    String?
+  createdAt        DateTime               @default(now())
+  createdBy        String?
+  dropId           String?                @unique
+  droppedDate      DateTime?
+  filePath         String?
+  firstName        String?
+  id               String                 @id @default(cuid())
+  lastName         String?
+  mobile           String?
+  needGuidance     Boolean?
+  sequence         Int?
+  sex              EnumDroppedUserSex?
+  status           EnumDroppedUserStatus?
+  updatedAt        DateTime               @updatedAt
+  updatedBy        String?
+  utmCampaign      String?
+  vcfString        String?
+  weight           String?
+  weightDifference Int?
 }
 
 model Sale {
@@ -42,22 +48,38 @@ model Sale {
   createdBy String?
   dropId    String?   @unique
   id        String    @id @default(cuid())
-  isChecked Boolean?
+  isCounted Boolean?
   saleDate  DateTime?
   updatedAt DateTime  @updatedAt
-  updatedBy DateTime?
+  updatedBy String?
 }
 
 model ContactFile {
-  bucket             String?       @unique
-  createdAt          DateTime      @default(now())
-  createdBy          String?
-  createdDate        DateTime?
-  droppedUsers       DroppedUser[]
-  filePath           String?
-  id                 String        @id @default(cuid())
-  saleRepresentative String?
-  salesCount         Float?
-  updatedAt          DateTime      @updatedAt
-  updatedBy          DateTime?
+  bucket                      String?       @unique
+  createdAt                   DateTime      @default(now())
+  createdBy                   String?
+  droppedUsers                DroppedUser[]
+  filePath                    String?
+  fromDate                    DateTime?
+  fromWeightDifference        Float?
+  id                          String        @id @default(cuid())
+  saleRepresentativeFirstName String?
+  saleRepresentativeLastName  String?
+  salesCount                  Int?
+  sex                         String?
+  toDate                      DateTime?
+  toWeightDifference          Float?
+  updatedAt                   DateTime      @updatedAt
+  updatedBy                   String?
+  utmCampaign                 String?
+}
+
+enum EnumDroppedUserSex {
+  F
+  M
+}
+
+enum EnumDroppedUserStatus {
+  INIT
+  SENT_NEED_GUIDANCE_SMS
 }

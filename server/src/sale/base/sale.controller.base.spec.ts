@@ -1,10 +1,18 @@
 import { Test } from "@nestjs/testing";
-import { INestApplication, HttpStatus, ExecutionContext } from "@nestjs/common";
+import {
+  INestApplication,
+  HttpStatus,
+  ExecutionContext,
+  CallHandler,
+} from "@nestjs/common";
 import request from "supertest";
 import { MorganModule } from "nest-morgan";
 import { ACGuard } from "nest-access-control";
 import { DefaultAuthGuard } from "../../auth/defaultAuth.guard";
 import { ACLModule } from "../../auth/acl.module";
+import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { map } from "rxjs";
 import { SaleController } from "../sale.controller";
 import { SaleService } from "../sale.service";
 
@@ -15,20 +23,20 @@ const CREATE_INPUT = {
   createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   id: "exampleId",
-  isChecked: "true",
+  isCounted: "true",
   saleDate: new Date(),
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
 };
 const CREATE_RESULT = {
   createdAt: new Date(),
   createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   id: "exampleId",
-  isChecked: "true",
+  isCounted: "true",
   saleDate: new Date(),
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
 };
 const FIND_MANY_RESULT = [
   {
@@ -36,10 +44,10 @@ const FIND_MANY_RESULT = [
     createdBy: "exampleCreatedBy",
     dropId: "exampleDropId",
     id: "exampleId",
-    isChecked: "true",
+    isCounted: "true",
     saleDate: new Date(),
     updatedAt: new Date(),
-    updatedBy: new Date(),
+    updatedBy: "exampleUpdatedBy",
   },
 ];
 const FIND_ONE_RESULT = {
@@ -47,10 +55,10 @@ const FIND_ONE_RESULT = {
   createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   id: "exampleId",
-  isChecked: "true",
+  isCounted: "true",
   saleDate: new Date(),
   updatedAt: new Date(),
-  updatedBy: new Date(),
+  updatedBy: "exampleUpdatedBy",
 };
 
 const service = {
@@ -85,6 +93,21 @@ const acGuard = {
   },
 };
 
+const aclFilterResponseInterceptor = {
+  intercept: (context: ExecutionContext, next: CallHandler) => {
+    return next.handle().pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  },
+};
+const aclValidateRequestInterceptor = {
+  intercept: (context: ExecutionContext, next: CallHandler) => {
+    return next.handle();
+  },
+};
+
 describe("Sale", () => {
   let app: INestApplication;
 
@@ -103,6 +126,10 @@ describe("Sale", () => {
       .useValue(basicAuthGuard)
       .overrideGuard(ACGuard)
       .useValue(acGuard)
+      .overrideInterceptor(AclFilterResponseInterceptor)
+      .useValue(aclFilterResponseInterceptor)
+      .overrideInterceptor(AclValidateRequestInterceptor)
+      .useValue(aclValidateRequestInterceptor)
       .compile();
 
     app = moduleRef.createNestApplication();
@@ -119,7 +146,6 @@ describe("Sale", () => {
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         saleDate: CREATE_RESULT.saleDate.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
-        updatedBy: CREATE_RESULT.updatedBy.toISOString(),
       });
   });
 
@@ -133,7 +159,6 @@ describe("Sale", () => {
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
           saleDate: FIND_MANY_RESULT[0].saleDate.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
-          updatedBy: FIND_MANY_RESULT[0].updatedBy.toISOString(),
         },
       ]);
   });
@@ -158,7 +183,6 @@ describe("Sale", () => {
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
         saleDate: FIND_ONE_RESULT.saleDate.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
-        updatedBy: FIND_ONE_RESULT.updatedBy.toISOString(),
       });
   });
 
