@@ -11,7 +11,14 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsBoolean, IsDate } from "class-validator";
+import {
+  IsString,
+  IsOptional,
+  ValidateNested,
+  IsBoolean,
+  IsDate,
+} from "class-validator";
+import { DroppedUserWhereUniqueInput } from "../../droppedUser/base/DroppedUserWhereUniqueInput";
 import { Type } from "class-transformer";
 @InputType()
 class SaleUpdateInput {
@@ -28,14 +35,15 @@ class SaleUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: () => DroppedUserWhereUniqueInput,
   })
-  @IsString()
+  @ValidateNested()
+  @Type(() => DroppedUserWhereUniqueInput)
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => DroppedUserWhereUniqueInput, {
     nullable: true,
   })
-  dropId?: string | null;
+  droppedUser?: DroppedUserWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,
@@ -46,7 +54,7 @@ class SaleUpdateInput {
   @Field(() => Boolean, {
     nullable: true,
   })
-  isChecked?: boolean | null;
+  isCounted?: boolean | null;
 
   @ApiProperty({
     required: false,
@@ -61,13 +69,13 @@ class SaleUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsString()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => String, {
     nullable: true,
   })
-  updatedBy?: Date | null;
+  updatedBy?: string | null;
 }
 export { SaleUpdateInput };
