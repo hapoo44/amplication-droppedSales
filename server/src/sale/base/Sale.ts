@@ -11,8 +11,15 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, IsOptional, IsBoolean } from "class-validator";
+import {
+  IsDate,
+  IsString,
+  IsOptional,
+  ValidateNested,
+  IsBoolean,
+} from "class-validator";
 import { Type } from "class-transformer";
+import { DroppedUser } from "../../droppedUser/base/DroppedUser";
 @ObjectType()
 class Sale {
   @ApiProperty({
@@ -36,14 +43,12 @@ class Sale {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: () => DroppedUser,
   })
-  @IsString()
+  @ValidateNested()
+  @Type(() => DroppedUser)
   @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  dropId!: string | null;
+  droppedUser?: DroppedUser | null;
 
   @ApiProperty({
     required: true,
@@ -62,7 +67,7 @@ class Sale {
   @Field(() => Boolean, {
     nullable: true,
   })
-  isChecked!: boolean | null;
+  isCounted!: boolean | null;
 
   @ApiProperty({
     required: false,
@@ -85,13 +90,13 @@ class Sale {
 
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsString()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => String, {
     nullable: true,
   })
-  updatedBy!: Date | null;
+  updatedBy!: string | null;
 }
 export { Sale };

@@ -1,15 +1,17 @@
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { ContactFileWhereUniqueInput } from "../contactFile/ContactFileWhereUniqueInput";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
-import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
+import { SaleWhereUniqueInput } from "../sale/SaleWhereUniqueInput";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 
 export type DroppedUserWhereInput = {
   bucket?: StringNullableFilter;
   contactFile?: ContactFileWhereUniqueInput;
   createdAt?: DateTimeFilter;
-  createdBy?: IntNullableFilter;
+  createdBy?: StringNullableFilter;
   dropId?: StringNullableFilter;
   droppedDate?: DateTimeNullableFilter;
   filePath?: StringNullableFilter;
@@ -17,7 +19,14 @@ export type DroppedUserWhereInput = {
   id?: StringFilter;
   lastName?: StringNullableFilter;
   mobile?: StringNullableFilter;
+  needGuidance?: BooleanNullableFilter;
+  sale?: SaleWhereUniqueInput;
   sequence?: IntNullableFilter;
-  updatedBy?: IntNullableFilter;
+  sex?: "F" | "M";
+  status?: "INIT" | "SENT_NEED_GUIDANCE_SMS";
+  updatedBy?: StringNullableFilter;
+  utmCampaign?: StringNullableFilter;
   vcfString?: StringNullableFilter;
+  weight?: StringNullableFilter;
+  weightDifference?: IntNullableFilter;
 };

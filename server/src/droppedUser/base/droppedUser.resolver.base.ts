@@ -25,6 +25,7 @@ import { DroppedUserFindManyArgs } from "./DroppedUserFindManyArgs";
 import { DroppedUserFindUniqueArgs } from "./DroppedUserFindUniqueArgs";
 import { DroppedUser } from "./DroppedUser";
 import { ContactFile } from "../../contactFile/base/ContactFile";
+import { Sale } from "../../sale/base/Sale";
 import { DroppedUserService } from "../droppedUser.service";
 
 @graphql.Resolver(() => DroppedUser)
@@ -85,6 +86,12 @@ export class DroppedUserResolverBase {
               connect: args.data.contactFile,
             }
           : undefined,
+
+        sale: args.data.sale
+          ? {
+              connect: args.data.sale,
+            }
+          : undefined,
       },
     });
   }
@@ -103,6 +110,12 @@ export class DroppedUserResolverBase {
           contactFile: args.data.contactFile
             ? {
                 connect: args.data.contactFile,
+              }
+            : undefined,
+
+          sale: args.data.sale
+            ? {
+                connect: args.data.sale,
               }
             : undefined,
         },
@@ -140,6 +153,17 @@ export class DroppedUserResolverBase {
     @graphql.Parent() parent: DroppedUser
   ): Promise<ContactFile | null> {
     const result = await this.service.getContactFile(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
+  }
+
+  @Public()
+  @graphql.ResolveField(() => Sale, { nullable: true })
+  async sale(@graphql.Parent() parent: DroppedUser): Promise<Sale | null> {
+    const result = await this.service.getSale(parent.id);
 
     if (!result) {
       return null;

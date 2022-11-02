@@ -40,13 +40,27 @@ export class SaleControllerBase {
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(@common.Body() data: SaleCreateInput): Promise<Sale> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        droppedUser: data.droppedUser
+          ? {
+              connect: data.droppedUser,
+            }
+          : undefined,
+      },
       select: {
         createdAt: true,
         createdBy: true,
-        dropId: true,
+
+        droppedUser: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
-        isChecked: true,
+        isCounted: true,
         saleDate: true,
         updatedAt: true,
         updatedBy: true,
@@ -66,9 +80,15 @@ export class SaleControllerBase {
       select: {
         createdAt: true,
         createdBy: true,
-        dropId: true,
+
+        droppedUser: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
-        isChecked: true,
+        isCounted: true,
         saleDate: true,
         updatedAt: true,
         updatedBy: true,
@@ -89,9 +109,15 @@ export class SaleControllerBase {
       select: {
         createdAt: true,
         createdBy: true,
-        dropId: true,
+
+        droppedUser: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
-        isChecked: true,
+        isCounted: true,
         saleDate: true,
         updatedAt: true,
         updatedBy: true,
@@ -117,13 +143,27 @@ export class SaleControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          droppedUser: data.droppedUser
+            ? {
+                connect: data.droppedUser,
+              }
+            : undefined,
+        },
         select: {
           createdAt: true,
           createdBy: true,
-          dropId: true,
+
+          droppedUser: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
-          isChecked: true,
+          isCounted: true,
           saleDate: true,
           updatedAt: true,
           updatedBy: true,
@@ -153,9 +193,15 @@ export class SaleControllerBase {
         select: {
           createdAt: true,
           createdBy: true,
-          dropId: true,
+
+          droppedUser: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
-          isChecked: true,
+          isCounted: true,
           saleDate: true,
           updatedAt: true,
           updatedBy: true,
