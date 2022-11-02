@@ -13,8 +13,9 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { DroppedUserWhereUniqueInput } from "../../droppedUser/base/DroppedUserWhereUniqueInput";
 import { StringFilter } from "../../util/StringFilter";
 import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
@@ -44,14 +45,15 @@ class SaleWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringNullableFilter,
+    type: () => DroppedUserWhereUniqueInput,
   })
-  @Type(() => StringNullableFilter)
+  @ValidateNested()
+  @Type(() => DroppedUserWhereUniqueInput)
   @IsOptional()
-  @Field(() => StringNullableFilter, {
+  @Field(() => DroppedUserWhereUniqueInput, {
     nullable: true,
   })
-  dropId?: StringNullableFilter;
+  droppedUser?: DroppedUserWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -73,7 +75,7 @@ class SaleWhereInput {
   @Field(() => BooleanNullableFilter, {
     nullable: true,
   })
-  isChecked?: BooleanNullableFilter;
+  isCounted?: BooleanNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -88,13 +90,13 @@ class SaleWhereInput {
 
   @ApiProperty({
     required: false,
-    type: DateTimeNullableFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => DateTimeNullableFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => DateTimeNullableFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  updatedBy?: DateTimeNullableFilter;
+  updatedBy?: StringNullableFilter;
 }
 export { SaleWhereInput };

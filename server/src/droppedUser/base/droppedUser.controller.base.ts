@@ -50,6 +50,12 @@ export class DroppedUserControllerBase {
               connect: data.contactFile,
             }
           : undefined,
+
+        sales: data.sales
+          ? {
+              connect: data.sales,
+            }
+          : undefined,
       },
       select: {
         bucket: true,
@@ -69,10 +75,23 @@ export class DroppedUserControllerBase {
         id: true,
         lastName: true,
         mobile: true,
+        needGuidance: true,
+
+        sales: {
+          select: {
+            id: true,
+          },
+        },
+
         sequence: true,
+        sex: true,
+        status: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weight: true,
+        weightDifference: true,
       },
     });
   }
@@ -104,10 +123,23 @@ export class DroppedUserControllerBase {
         id: true,
         lastName: true,
         mobile: true,
+        needGuidance: true,
+
+        sales: {
+          select: {
+            id: true,
+          },
+        },
+
         sequence: true,
+        sex: true,
+        status: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weight: true,
+        weightDifference: true,
       },
     });
   }
@@ -140,10 +172,23 @@ export class DroppedUserControllerBase {
         id: true,
         lastName: true,
         mobile: true,
+        needGuidance: true,
+
+        sales: {
+          select: {
+            id: true,
+          },
+        },
+
         sequence: true,
+        sex: true,
+        status: true,
         updatedAt: true,
         updatedBy: true,
+        utmCampaign: true,
         vcfString: true,
+        weight: true,
+        weightDifference: true,
       },
     });
     if (result === null) {
@@ -174,6 +219,12 @@ export class DroppedUserControllerBase {
                 connect: data.contactFile,
               }
             : undefined,
+
+          sales: data.sales
+            ? {
+                connect: data.sales,
+              }
+            : undefined,
         },
         select: {
           bucket: true,
@@ -193,10 +244,23 @@ export class DroppedUserControllerBase {
           id: true,
           lastName: true,
           mobile: true,
+          needGuidance: true,
+
+          sales: {
+            select: {
+              id: true,
+            },
+          },
+
           sequence: true,
+          sex: true,
+          status: true,
           updatedAt: true,
           updatedBy: true,
+          utmCampaign: true,
           vcfString: true,
+          weight: true,
+          weightDifference: true,
         },
       });
     } catch (error) {
@@ -238,10 +302,23 @@ export class DroppedUserControllerBase {
           id: true,
           lastName: true,
           mobile: true,
+          needGuidance: true,
+
+          sales: {
+            select: {
+              id: true,
+            },
+          },
+
           sequence: true,
+          sex: true,
+          status: true,
           updatedAt: true,
           updatedBy: true,
+          utmCampaign: true,
           vcfString: true,
+          weight: true,
+          weightDifference: true,
         },
       });
     } catch (error) {

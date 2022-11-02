@@ -1,10 +1,18 @@
 import { Test } from "@nestjs/testing";
-import { INestApplication, HttpStatus, ExecutionContext } from "@nestjs/common";
+import {
+  INestApplication,
+  HttpStatus,
+  ExecutionContext,
+  CallHandler,
+} from "@nestjs/common";
 import request from "supertest";
 import { MorganModule } from "nest-morgan";
 import { ACGuard } from "nest-access-control";
 import { DefaultAuthGuard } from "../../auth/defaultAuth.guard";
 import { ACLModule } from "../../auth/acl.module";
+import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { map } from "rxjs";
 import { DroppedUserController } from "../droppedUser.controller";
 import { DroppedUserService } from "../droppedUser.service";
 
@@ -13,7 +21,7 @@ const existingId = "existingId";
 const CREATE_INPUT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
-  createdBy: 42,
+  createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   droppedDate: new Date(),
   filePath: "exampleFilePath",
@@ -21,15 +29,19 @@ const CREATE_INPUT = {
   id: "exampleId",
   lastName: "exampleLastName",
   mobile: "exampleMobile",
+  needGuidance: "true",
   sequence: 42,
   updatedAt: new Date(),
-  updatedBy: 42,
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
   vcfString: "exampleVcfString",
+  weight: "exampleWeight",
+  weightDifference: 42,
 };
 const CREATE_RESULT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
-  createdBy: 42,
+  createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   droppedDate: new Date(),
   filePath: "exampleFilePath",
@@ -37,16 +49,20 @@ const CREATE_RESULT = {
   id: "exampleId",
   lastName: "exampleLastName",
   mobile: "exampleMobile",
+  needGuidance: "true",
   sequence: 42,
   updatedAt: new Date(),
-  updatedBy: 42,
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
   vcfString: "exampleVcfString",
+  weight: "exampleWeight",
+  weightDifference: 42,
 };
 const FIND_MANY_RESULT = [
   {
     bucket: "exampleBucket",
     createdAt: new Date(),
-    createdBy: 42,
+    createdBy: "exampleCreatedBy",
     dropId: "exampleDropId",
     droppedDate: new Date(),
     filePath: "exampleFilePath",
@@ -54,16 +70,20 @@ const FIND_MANY_RESULT = [
     id: "exampleId",
     lastName: "exampleLastName",
     mobile: "exampleMobile",
+    needGuidance: "true",
     sequence: 42,
     updatedAt: new Date(),
-    updatedBy: 42,
+    updatedBy: "exampleUpdatedBy",
+    utmCampaign: "exampleUtmCampaign",
     vcfString: "exampleVcfString",
+    weight: "exampleWeight",
+    weightDifference: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   bucket: "exampleBucket",
   createdAt: new Date(),
-  createdBy: 42,
+  createdBy: "exampleCreatedBy",
   dropId: "exampleDropId",
   droppedDate: new Date(),
   filePath: "exampleFilePath",
@@ -71,10 +91,14 @@ const FIND_ONE_RESULT = {
   id: "exampleId",
   lastName: "exampleLastName",
   mobile: "exampleMobile",
+  needGuidance: "true",
   sequence: 42,
   updatedAt: new Date(),
-  updatedBy: 42,
+  updatedBy: "exampleUpdatedBy",
+  utmCampaign: "exampleUtmCampaign",
   vcfString: "exampleVcfString",
+  weight: "exampleWeight",
+  weightDifference: 42,
 };
 
 const service = {
@@ -109,6 +133,21 @@ const acGuard = {
   },
 };
 
+const aclFilterResponseInterceptor = {
+  intercept: (context: ExecutionContext, next: CallHandler) => {
+    return next.handle().pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  },
+};
+const aclValidateRequestInterceptor = {
+  intercept: (context: ExecutionContext, next: CallHandler) => {
+    return next.handle();
+  },
+};
+
 describe("DroppedUser", () => {
   let app: INestApplication;
 
@@ -127,6 +166,10 @@ describe("DroppedUser", () => {
       .useValue(basicAuthGuard)
       .overrideGuard(ACGuard)
       .useValue(acGuard)
+      .overrideInterceptor(AclFilterResponseInterceptor)
+      .useValue(aclFilterResponseInterceptor)
+      .overrideInterceptor(AclValidateRequestInterceptor)
+      .useValue(aclValidateRequestInterceptor)
       .compile();
 
     app = moduleRef.createNestApplication();
