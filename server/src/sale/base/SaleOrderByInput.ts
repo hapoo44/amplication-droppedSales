@@ -43,7 +43,7 @@ class SaleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  dropId?: SortOrder;
+  droppedUserId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class SaleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  isChecked?: SortOrder;
+  isCounted?: SortOrder;
 
   @ApiProperty({
     required: false,

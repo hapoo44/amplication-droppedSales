@@ -24,6 +24,7 @@ import { DeleteSaleArgs } from "./DeleteSaleArgs";
 import { SaleFindManyArgs } from "./SaleFindManyArgs";
 import { SaleFindUniqueArgs } from "./SaleFindUniqueArgs";
 import { Sale } from "./Sale";
+import { DroppedUser } from "../../droppedUser/base/DroppedUser";
 import { SaleService } from "../sale.service";
 
 @graphql.Resolver(() => Sale)
@@ -70,7 +71,15 @@ export class SaleResolverBase {
   async createSale(@graphql.Args() args: CreateSaleArgs): Promise<Sale> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        droppedUser: args.data.droppedUser
+          ? {
+              connect: args.data.droppedUser,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -80,7 +89,15 @@ export class SaleResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          droppedUser: args.data.droppedUser
+            ? {
+                connect: args.data.droppedUser,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -105,5 +122,18 @@ export class SaleResolverBase {
       }
       throw error;
     }
+  }
+
+  @Public()
+  @graphql.ResolveField(() => DroppedUser, { nullable: true })
+  async droppedUser(
+    @graphql.Parent() parent: Sale
+  ): Promise<DroppedUser | null> {
+    const result = await this.service.getDroppedUser(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

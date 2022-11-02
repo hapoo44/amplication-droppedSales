@@ -1,5 +1,6 @@
 import { DateTimeFilter } from "../../util/DateTimeFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { DroppedUserWhereUniqueInput } from "../droppedUser/DroppedUserWhereUniqueInput";
 import { StringFilter } from "../../util/StringFilter";
 import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
@@ -7,9 +8,9 @@ import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 export type SaleWhereInput = {
   createdAt?: DateTimeFilter;
   createdBy?: StringNullableFilter;
-  dropId?: StringNullableFilter;
+  droppedUser?: DroppedUserWhereUniqueInput;
   id?: StringFilter;
-  isChecked?: BooleanNullableFilter;
+  isCounted?: BooleanNullableFilter;
   saleDate?: DateTimeNullableFilter;
-  updatedBy?: DateTimeNullableFilter;
+  updatedBy?: StringNullableFilter;
 };

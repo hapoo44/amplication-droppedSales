@@ -1,10 +1,12 @@
+import { DroppedUser } from "../droppedUser/DroppedUser";
+
 export type Sale = {
   createdAt: Date;
   createdBy: string | null;
-  dropId: string | null;
+  droppedUser?: DroppedUser | null;
   id: string;
-  isChecked: boolean | null;
+  isCounted: boolean | null;
   saleDate: Date | null;
   updatedAt: Date;
-  updatedBy: Date | null;
+  updatedBy: string | null;
 };
